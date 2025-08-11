@@ -52,34 +52,40 @@ const ICPhotoCarousel = ({ openModal }) => {
     setCurrentX(e.touches[0].clientX);
   }, []);
 
-  const handleTouchMove = useCallback((e) => {
-    if (isDragging) {
-      e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
-      setCurrentX(e.touches[0].clientX);
-    }
-  }, [isDragging]);
-
-  const handleTouchEnd = useCallback((e) => {
-    if (isDragging) {
-      e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
-      const diffX = startX - currentX;
-      const threshold = 30; // ลดระยะทางขั้นต่ำในการปัด (จาก 50 เป็น 30)
-
-      if (Math.abs(diffX) > threshold) {
-        if (diffX > 0) {
-          // ปัดไปทางซ้าย = รูปถัดไป
-          nextSlide();
-        } else {
-          // ปัดไปทางขวา = รูปก่อนหน้า
-          prevSlide();
-        }
+  const handleTouchMove = useCallback(
+    (e) => {
+      if (isDragging) {
+        e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
+        setCurrentX(e.touches[0].clientX);
       }
+    },
+    [isDragging]
+  );
 
-      setIsDragging(false);
-      setStartX(0);
-      setCurrentX(0);
-    }
-  }, [isDragging, startX, currentX]);
+  const handleTouchEnd = useCallback(
+    (e) => {
+      if (isDragging) {
+        e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
+        const diffX = startX - currentX;
+        const threshold = 30; // ลดระยะทางขั้นต่ำในการปัด (จาก 50 เป็น 30)
+
+        if (Math.abs(diffX) > threshold) {
+          if (diffX > 0) {
+            // ปัดไปทางซ้าย = รูปถัดไป
+            nextSlide();
+          } else {
+            // ปัดไปทางขวา = รูปก่อนหน้า
+            prevSlide();
+          }
+        }
+
+        setIsDragging(false);
+        setStartX(0);
+        setCurrentX(0);
+      }
+    },
+    [isDragging, startX, currentX, nextSlide, prevSlide]
+  );
 
   // Mouse events สำหรับการลาก - ปรับปรุงให้ง่ายขึ้น
   const handleMouseDown = useCallback((e) => {
@@ -88,11 +94,14 @@ const ICPhotoCarousel = ({ openModal }) => {
     setCurrentX(e.clientX);
   }, []);
 
-  const handleMouseMove = useCallback((e) => {
-    if (isDragging) {
-      setCurrentX(e.clientX);
-    }
-  }, [isDragging]);
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (isDragging) {
+        setCurrentX(e.clientX);
+      }
+    },
+    [isDragging]
+  );
 
   const handleMouseUp = useCallback(() => {
     if (isDragging) {
@@ -113,7 +122,7 @@ const ICPhotoCarousel = ({ openModal }) => {
       setStartX(0);
       setCurrentX(0);
     }
-  }, [isDragging, startX, currentX]);
+  }, [isDragging, startX, currentX, nextSlide, prevSlide]);
 
   // เพิ่ม event listeners เมื่อ component mount
   useEffect(() => {
