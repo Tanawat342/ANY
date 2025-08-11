@@ -34,15 +34,15 @@ const ICPhotoCarousel = ({ openModal }) => {
     "/assets/images/IC/23.jpg",
   ];
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % icImages.length);
-  };
+  }, [icImages.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + icImages.length) % icImages.length
     );
-  };
+  }, [icImages.length]);
 
   // Touch events สำหรับการปัด - ปรับปรุงให้ง่ายขึ้น
   const handleTouchStart = useCallback((e) => {
