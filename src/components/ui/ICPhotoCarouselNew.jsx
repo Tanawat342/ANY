@@ -147,7 +147,17 @@ const ICPhotoCarouselNew = ({ openModal }) => {
         container.removeEventListener("mouseleave", handleMouseUp);
       };
     }
-  }, [isDragging, startX, currentX]);
+  }, [
+    isDragging,
+    startX,
+    currentX,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+  ]);
 
   const getVisibleImages = () => {
     const prevIndex = (currentIndex - 1 + icImages.length) % icImages.length;
@@ -217,18 +227,11 @@ const ICPhotoCarouselNew = ({ openModal }) => {
             }}
             onClick={() => openModal(image.src)}
           >
-            <div className="relative group">
-              <img
-                src={image.src}
-                alt={`IC Image ${image.index + 1}`}
-                className="w-[240px] h-[320px] rounded-2xl shadow-2xl object-cover border-4 border-white hover:scale-105 transition-transform duration-200"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-2xl flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm font-bold bg-black bg-opacity-50 px-3 py-1 rounded-full">
-                  👁️ Click to view
-                </div>
-              </div>
-            </div>
+            <img
+              src={image.src}
+              alt={`IC ${image.index + 1}`}
+              className="w-[240px] h-[320px] rounded-2xl shadow-2xl object-cover border-4 border-white hover:scale-105 transition-transform duration-200"
+            />
           </div>
         ))}
 

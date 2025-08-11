@@ -147,7 +147,17 @@ const ICPhotoCarousel = ({ openModal }) => {
         container.removeEventListener("mouseleave", handleMouseUp);
       };
     }
-  }, [isDragging, startX, currentX]);
+  }, [
+    isDragging,
+    startX,
+    currentX,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+  ]);
 
   const getVisibleImages = () => {
     const prevIndex = (currentIndex - 1 + icImages.length) % icImages.length;
@@ -219,7 +229,7 @@ const ICPhotoCarousel = ({ openModal }) => {
           >
             <img
               src={image.src}
-              alt={`IC Image ${image.index + 1}`}
+              alt={`IC ${image.index + 1}`}
               className="w-[240px] h-[320px] rounded-2xl shadow-2xl object-cover border-4 border-white hover:scale-105 transition-transform duration-200"
             />
           </div>

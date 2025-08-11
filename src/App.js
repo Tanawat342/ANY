@@ -5,7 +5,6 @@ import { useInView } from "framer-motion";
 import { useModal } from "./hooks/useModal";
 import {
   HeroSection,
-  MemoryGallery,
   Footer,
   MusicPlayer,
   StackedPhotoCarousel,
@@ -21,7 +20,6 @@ function App() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
-  const memoryGalleryRef = useRef(null);
   const giftRef = useRef(null);
 
   // ตรวจสอบข้อมูล
@@ -53,10 +51,6 @@ function App() {
     setIsUnlocked(true);
   }, []);
 
-  const isInViewMemoryGalleryRef = useInView(memoryGalleryRef, {
-    once: true,
-    amount: 0.2,
-  });
   const isInViewGiftRef = useInView(giftRef, {
     once: true,
     amount: 0.2,
