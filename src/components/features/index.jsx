@@ -1,1 +1,1 @@
-export { default as GiftSection } from "./GiftSection";
+export { default as AnniversarySection } from "./AnniversarySection";

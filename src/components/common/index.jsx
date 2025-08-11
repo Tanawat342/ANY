@@ -1,1 +1,1 @@
-export { default as MemoryZone } from "./MemoryZone";
+// Common components for the anniversary project

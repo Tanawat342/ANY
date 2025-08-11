@@ -1,2 +1,15 @@
-export { default as MessageSection } from "./MessageSection";
-export { default as Header } from "./Header";
+export { default as HeroSection } from "./HeroSection";
+export { default as MemoryGallery } from "./MemoryGallery";
+export { default as ImageGallery } from "./ImageGallery";
+export { default as Footer } from "./Footer";
+export { default as MusicPlayer } from "./MusicPlayer";
+export { default as PhotoCarousel } from "./PhotoCarousel";
+export { default as FirstImageCarousel } from "./FirstImageCarousel";
+export { default as StackedPhotoCarousel } from "./StackedPhotoCarousel";
+export { default as GiftOpening } from "./GiftOpening";
+export { default as FloatingAssets } from "./FloatingAssets";
+export { default as YouTubeEmbed } from "./YouTubeEmbed";
+export { default as PasswordLock } from "./PasswordLock";
+export { default as ICPhotoCarousel } from "./ICPhotoCarousel";
+export { default as ICPhotoCarouselNew } from "./ICPhotoCarouselNew";
+export { default as ImageModal } from "./ImageModal";

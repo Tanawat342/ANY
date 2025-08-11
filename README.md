@@ -1,138 +1,107 @@
-## ประกาศลิขสิทธิ์และเงื่อนไขการใช้งาน
+# Surprise Birthday Basic
 
-โปรเจกต์นี้เผยแพร่เพื่อให้ใช้งานได้ฟรีเฉพาะในกรณีส่วนตัวเท่านั้นและอยู่ภายใต้ลิขสิทธิ์ส่วนบุคคล
-
-โดยหากผู้ใดนำโปรเจกต์ไปใช้เพื่อการหารายได้หรือวัตถุประสงค์เชิงพาณิชย์ จะต้องชำระค่าลิขสิทธิ์ตามที่กำหนด ดังนี้:
-
--   โปรเจกต์ Basic เพื่อการหารายได้หรือวัตถุประสงค์เชิงพาณิชย์ จะมีค่าลิขสิทธิ์จำนวน 300 บาท
-
--   โปรเจกต์แบบเต็ม (Premium Version) ซึ่งมีฟีเจอร์เพิ่มเติม จะมีค่าลิขสิทธิ์จำนวน 1,000 บาท
-
-    -   Demo premium: [Demo premium version](https://surprise-birthday-premium.onrender.com)
-
-การกระทำใด ๆ ที่เป็นการละเมิดลิขสิทธิ์โดยไม่ปฏิบัติตามเงื่อนไขที่ระบุไว้ อาจมีผลทางกฎหมายภายใต้พระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537 และการดำเนินคดีทางกฎหมายที่เกี่ยวข้องกับการละเมิดลิขสิทธิ์
-
-ท่านสามารถติดต่อเพื่อสอบถามหรือชำระค่าลิขสิทธิ์ได้ผ่านช่องทางต่อไปนี้:
-
--   Line: @959zlvla
--   TikTok: [@term.suqi](https://www.tiktok.com/@term.suqi)
--   Instagram: [suqi_dev](https://www.instagram.com/suqi_dev)
-
-สงวนลิขสิทธิ์ตามกฎหมาย และ ทรัพย์สินทางปัญญา
-
-## Licensing & Pricing
-
-This project is free for personal use.
-If you plan to use the Basic version to generate income, the fee is 300 Baht.
-To access the Premium version with full features, the price is 1000 Baht.
-For purchasing the project or upgrading, contact via:
-
-Demo premium:
-[Demo premium version](https://surprise-birthday-premium.onrender.com)
-
--   Line: @959zlvla
--   TikTok: [@term.suqi](https://www.tiktok.com/@term.suqi)
--   Instagram: [suqi_dev](https://www.instagram.com/suqi_dev)
-
-# Surprise Birthday Website - Basic Version
-
-This is the **Basic Version** of the Surprise Birthday Website. It features a streamlined version of the full product, designed to give users a delightful experience for celebrating special birthdays, while not including some of the premium features present in the full version.
+A beautiful birthday surprise website with premium features like music player, photo carousel, gift opening, and floating animations.
 
 ## Features
 
--   🎉 **Custom Birthday Message**: Display a personalized birthday message to the recipient.
--   ✨ **Floating Header and Animations**: Engaging visual effects, including a floating header and smooth animations.
--   💬 **Personalized Messages**: Add a series of personalized messages to convey your heartfelt thoughts.
--   🎨 **Beautiful Design**: Minimal yet elegant design to provide a smooth and beautiful experience for users.
+### 🎵 Music Player
 
-## Not including Features in Basic Version
+- Background music with controls
+- Play/pause functionality
+- Volume control
 
-The following features are included in the full version only:
+### 📸 Photo Gallery
 
--   📸 **Photo Carousel**: The full version includes a feature to view gift albums in a photo carousel format.
--   🎶 **Music Player**: The full version includes an embedded music player for a more immersive experience.
--   🎁 **Interactive Gift Opening**: The full version includes a Lottie animation and gift opening experience.
--   🖼 **Floating Assets and Animation**: The full version includes floating an assets and some animation for a more immersive experience.
--   🎉 **Youtube**: The full version includes an embedded youtube for a more immersive experience.
+- Interactive photo carousel
+- **NEW: Full-screen image modal** - Click on any image to view it in full-screen popup
+- Smooth animations and transitions
+- Responsive grid layout
 
--   Demo premium:
-    [Demo premium version](https://surprise-birthday-premium.onrender.com)
+### 🎁 Gift Opening
+
+- Interactive gift opening animation
+- Surprise content reveal
+
+### ✨ Floating Assets
+
+- Beautiful floating animations
+- Background effects
+
+### 🔒 Password Lock
+
+- Secure access control
+- Custom unlock mechanism
+
+## Image Modal Feature
+
+The new Image Modal feature allows users to:
+
+- **Click on any image** to open it in a full-screen popup
+- **View images at full resolution** without scrolling to the bottom
+- **Close the modal** by clicking anywhere or the close button
+- **Smooth animations** with framer-motion
+- **Responsive design** that works on all screen sizes
+
+### How to Use
+
+1. Navigate to any photo gallery section
+2. Click on any image thumbnail
+3. The image will open in a full-screen modal
+4. Click anywhere or the ✕ button to close
 
 ## Installation
 
-To install and run the project locally, follow these steps:
+```bash
+npm install
+npm start
+```
 
-1. Clone this repository:
+## Dependencies
 
-    ```bash
-    git clone https://github.com/ntermpmm/surprise-birthday-basic.git
+- React 18
+- Framer Motion (for animations)
+- Tailwind CSS (for styling)
+- React Device Detect
 
-    ```
+## Development
 
-2. Navigate to the project directory:
-
-    ```bash
-    cd surprise-birthday-basic
-
-    ```
-
-3. Install the dependencies:
-
-    ```bash
-    pnpm install
-
-    ```
-
-4. Start the development server:
-    ```bash
-    pnpm dev
-    ```
-
-Your website will now be running at http://localhost:3000.
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm test         # Run tests
+```
 
 ## Project Structure
 
-```bash
- src/
- │
- ├── assets/               # Static assets like images and mock data
- │   └── images/           # Image files
- │   └── mock/             # Mock data for the project
- ├── components/           # Reusable React components
- │   └── common/           # General components used across the app
- │   └── features/         # Feature components
- │   └── ui/               # UI components for more complex functionality
- ├── hooks/                # Custom hooks for handling logic (e.g., useModal)
- └── App.js                # Main entry point of the app
-
+```
+src/
+├── components/
+│   ├── ui/
+│   │   ├── ImageModal.jsx      # NEW: Full-screen image modal
+│   │   ├── ImageGallery.jsx    # Photo gallery component
+│   │   └── ...                 # Other UI components
+│   └── ...
+├── hooks/
+│   └── useModal.jsx            # Modal state management
+└── ...
 ```
 
 ## Customization
 
-To customize the content in the basic version, edit the following components:
+The Image Modal can be customized by:
 
-Birthday Message: Modify the Header component in src/components/ui/Header.jsx to change the title and subtitle.
-Personal Messages: Update the messages in src/components/ui/MessageSection.jsx to personalize the content.
+- Modifying the background opacity in `ImageModal.jsx`
+- Changing animation durations in the motion components
+- Adjusting the close button position and style
+- Customizing the hint text at the bottom
 
-License
-This project is licensed under the MIT License.
+## Browser Support
 
-## Full Version Features
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
 
-For users interested in unlocking the full experience with additional features, please contact us for details on how to upgrade.
+## License
 
--   🎁 Interactive Gift Opening Animation
--   📸 Photo Albums with Modal Previews
--   🎶 Integrated Music Player
--   📸 Photo Carousel
--   🖼 Floating Assets and Animation
--   🎉 Youtube
-
-Demo premium: [Demo premium version](https://surprise-birthday-premium.onrender.com)
-
-## Contact
-
--   Line: @959zlvla
--   TikTok: [@term.suqi](https://www.tiktok.com/@term.suqi)
--   Instagram: [suqi_dev](https://www.instagram.com/suqi_dev)
--   Linktree: [termsuqi](https://linktr.ee/termsuqi)
+This project is for personal use only.
