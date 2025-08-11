@@ -189,39 +189,39 @@ const MusicPlayer = memo(() => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="w-full max-w-lg mx-auto mt-12 mb-8"
+      className="w-full max-w-sm mx-auto mt-8 mb-6"
     >
       {/* Hidden Audio Element */}
       <audio ref={audioRef} src={songInfo.audioSrc} preload="metadata" />
 
-      <div className="bg-light-green-50 rounded-3xl shadow-2xl p-8 border border-light-green-200 relative overflow-hidden">
+      <div className="bg-light-green-50 rounded-2xl shadow-xl p-6 border border-light-green-200 relative overflow-hidden">
         {/* Background Decoration */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-light-green-200 to-sage-200 rounded-full opacity-20 -translate-y-16 translate-x-16"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-sage-200 to-light-green-200 rounded-full opacity-20 translate-y-12 -translate-x-12"></div>
+        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-light-green-200 to-sage-200 rounded-full opacity-20 -translate-y-10 translate-x-10"></div>
+        <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-br from-sage-200 to-light-green-200 rounded-full opacity-20 translate-y-8 -translate-x-8"></div>
 
         {/* Lyrics/Text Area */}
         <motion.div
-          className="text-center mb-8"
+          className="text-center mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-light-green-800 text-lg font-medium leading-relaxed mb-2">
+          <p className="text-light-green-800 text-base font-medium leading-relaxed mb-2">
             {songInfo.lyrics}
           </p>
         </motion.div>
 
         {/* Album Art and Song Title */}
         <motion.div
-          className="flex items-center mb-8"
+          className="flex items-center mb-6"
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <div className="w-20 h-20 bg-gradient-to-br from-light-green-400 via-light-green-300 to-sage-300 rounded-2xl flex items-center justify-center mr-4 shadow-lg overflow-hidden">
+          <div className="w-16 h-16 bg-gradient-to-br from-light-green-400 via-light-green-300 to-sage-300 rounded-xl flex items-center justify-center mr-3 shadow-lg overflow-hidden">
             <video
               ref={videoRef}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-lg"
               muted
               loop
               playsInline
@@ -235,47 +235,47 @@ const MusicPlayer = memo(() => {
             </video>
           </div>
           <div className="flex flex-col">
-            <span className="text-light-green-800 font-bold text-lg mb-1">
+            <span className="text-light-green-800 font-bold text-base mb-1">
               {songInfo.title}
             </span>
-            <span className="text-sage-600 text-sm">{songInfo.artist}</span>
+            <span className="text-sage-600 text-xs">{songInfo.artist}</span>
           </div>
         </motion.div>
 
         {/* Progress Bar and Time */}
         <motion.div
-          className="mb-8"
+          className="mb-6"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <div className="flex justify-between text-sm text-sage-600 mb-3">
+          <div className="flex justify-between text-xs text-sage-600 mb-2">
             <span className="font-medium">{formatTime(currentTime)}</span>
             <span className="font-medium">{formatTime(duration)}</span>
           </div>
           <div
-            className="w-full bg-light-green-200 rounded-full h-3 cursor-pointer relative group"
+            className="w-full bg-light-green-200 rounded-full h-2 cursor-pointer relative group"
             onClick={handleSeek}
           >
             <div
-              className="bg-gradient-to-r from-light-green-500 via-light-green-400 to-sage-400 h-3 rounded-full relative transition-all duration-100 shadow-lg"
+              className="bg-gradient-to-r from-light-green-500 via-light-green-400 to-sage-400 h-2 rounded-full relative transition-all duration-100 shadow-lg"
               style={{
                 width: `${duration ? (currentTime / duration) * 100 : 0}%`,
               }}
             >
-              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-5 h-5 bg-white rounded-full border-3 border-light-green-500 shadow-lg hover:scale-125 transition-transform opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full border-2 border-light-green-500 shadow-lg hover:scale-125 transition-transform opacity-0 group-hover:opacity-100"></div>
             </div>
           </div>
         </motion.div>
 
         {/* Volume Control */}
         <motion.div
-          className="mb-8"
+          className="mb-6"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex items-center justify-center space-x-3">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -284,7 +284,7 @@ const MusicPlayer = memo(() => {
             >
               {isMuted ? (
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -296,7 +296,7 @@ const MusicPlayer = memo(() => {
                 </svg>
               ) : (
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -315,9 +315,9 @@ const MusicPlayer = memo(() => {
               step="0.1"
               value={volume}
               onChange={handleVolumeChange}
-              className="w-32 h-2 bg-light-green-200 rounded-lg appearance-none cursor-pointer slider"
+              className="w-24 h-2 bg-light-green-200 rounded-lg appearance-none cursor-pointer slider"
             />
-            <span className="text-sage-600 text-sm font-medium min-w-[3rem]">
+            <span className="text-sage-600 text-xs font-medium min-w-[2.5rem]">
               {Math.round(volume * 100)}%
             </span>
           </div>
@@ -325,7 +325,7 @@ const MusicPlayer = memo(() => {
 
         {/* Playback Controls */}
         <motion.div
-          className="flex justify-center items-center space-x-8 mb-6"
+          className="flex justify-center items-center space-x-6 mb-4"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7 }}
@@ -334,12 +334,12 @@ const MusicPlayer = memo(() => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={skipBackward}
-            className="text-sage-600 hover:text-light-green-600 transition-colors p-2 rounded-full hover:bg-light-green-100"
+            className="text-sage-600 hover:text-light-green-600 transition-colors p-1.5 rounded-full hover:bg-light-green-100"
             title="ย้อนหลัง 10 วินาที"
             disabled={isLoading}
           >
             <svg
-              className="w-7 h-7"
+              className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -357,21 +357,17 @@ const MusicPlayer = memo(() => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={togglePlay}
-            className="w-20 h-20 bg-gradient-to-r from-light-green-500 via-light-green-400 to-sage-400 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:rotate-3"
+            className="w-16 h-16 bg-gradient-to-r from-light-green-500 via-light-green-400 to-sage-400 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:rotate-3"
             disabled={isLoading}
           >
             {isLoading ? (
               <motion.div
-                className="w-8 h-8 border-4 border-white border-t-transparent rounded-full"
+                className="w-6 h-6 border-3 border-white border-t-transparent rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               ></motion.div>
             ) : isPlaying ? (
-              <svg
-                className="w-10 h-10"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fillRule="evenodd"
                   d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -379,11 +375,7 @@ const MusicPlayer = memo(() => {
                 />
               </svg>
             ) : (
-              <svg
-                className="w-10 h-10"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fillRule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -397,12 +389,12 @@ const MusicPlayer = memo(() => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={skipForward}
-            className="text-sage-600 hover:text-light-green-600 transition-colors p-2 rounded-full hover:bg-light-green-100"
+            className="text-sage-600 hover:text-light-green-600 transition-colors p-1.5 rounded-full hover:bg-light-green-100"
             title="ไปข้างหน้า 10 วินาที"
             disabled={isLoading}
           >
             <svg
-              className="w-7 h-7"
+              className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -424,11 +416,11 @@ const MusicPlayer = memo(() => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          <div className="text-sm text-sage-600 font-medium">
+          <div className="text-xs text-sage-600 font-medium">
             {isLoading ? (
               <motion.div className="flex items-center justify-center space-x-2">
                 <motion.div
-                  className="w-4 h-4 border-2 border-light-green-500 border-t-transparent rounded-full"
+                  className="w-3 h-3 border-2 border-light-green-500 border-t-transparent rounded-full"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 ></motion.div>

@@ -13,3 +13,4 @@ export { default as PasswordLock } from "./PasswordLock";
 export { default as ICPhotoCarousel } from "./ICPhotoCarousel";
 export { default as ICPhotoCarouselNew } from "./ICPhotoCarouselNew";
 export { default as ImageModal } from "./ImageModal";
+export { default as ErrorBoundary } from "./ErrorBoundary";

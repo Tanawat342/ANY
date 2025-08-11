@@ -7,31 +7,31 @@ const ICPhotoCarouselNew = ({ openModal }) => {
   const [currentX, setCurrentX] = useState(0);
   const containerRef = useRef(null);
 
-  // รูปภาพจากโฟลเดอร์ IC - ใช้ absolute path จาก public folder
+  // รูปภาพจากโฟลเดอร์ IC - ใช้ relative path จาก public folder
   const icImages = [
-    "/assets/images/IC/1.jpg",
-    "/assets/images/IC/2.jpg",
-    "/assets/images/IC/3.jpg",
-    "/assets/images/IC/4.jpg",
-    "/assets/images/IC/5.jpg",
-    "/assets/images/IC/6.jpg",
-    "/assets/images/IC/7.jpg",
-    "/assets/images/IC/8.jpg",
-    "/assets/images/IC/9.jpg",
-    "/assets/images/IC/10.jpg",
-    "/assets/images/IC/11.jpg",
-    "/assets/images/IC/12.jpg",
-    "/assets/images/IC/13.jpg",
-    "/assets/images/IC/14.jpg",
-    "/assets/images/IC/15.jpg",
-    "/assets/images/IC/16.jpg",
-    "/assets/images/IC/17.jpg",
-    "/assets/images/IC/18.jpg",
-    "/assets/images/IC/19.jpg",
-    "/assets/images/IC/20.jpg",
-    "/assets/images/IC/21.jpg",
-    "/assets/images/IC/22.jpg",
-    "/assets/images/IC/23.jpg",
+    "assets/images/IC/1.jpg",
+    "assets/images/IC/2.jpg",
+    "assets/images/IC/3.jpg",
+    "assets/images/IC/4.jpg",
+    "assets/images/IC/5.jpg",
+    "assets/images/IC/6.jpg",
+    "assets/images/IC/7.jpg",
+    "assets/images/IC/8.jpg",
+    "assets/images/IC/9.jpg",
+    "assets/images/IC/10.jpg",
+    "assets/images/IC/11.jpg",
+    "assets/images/IC/12.jpg",
+    "assets/images/IC/13.jpg",
+    "assets/images/IC/14.jpg",
+    "assets/images/IC/15.jpg",
+    "assets/images/IC/16.jpg",
+    "assets/images/IC/17.jpg",
+    "assets/images/IC/18.jpg",
+    "assets/images/IC/19.jpg",
+    "assets/images/IC/20.jpg",
+    "assets/images/IC/21.jpg",
+    "assets/images/IC/22.jpg",
+    "assets/images/IC/23.jpg",
   ];
 
   const nextSlide = useCallback(() => {
@@ -46,7 +46,6 @@ const ICPhotoCarouselNew = ({ openModal }) => {
 
   // Touch events สำหรับการปัด - ปรับปรุงให้ง่ายขึ้น
   const handleTouchStart = useCallback((e) => {
-    e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
     setIsDragging(true);
     setStartX(e.touches[0].clientX);
     setCurrentX(e.touches[0].clientX);
@@ -55,7 +54,6 @@ const ICPhotoCarouselNew = ({ openModal }) => {
   const handleTouchMove = useCallback(
     (e) => {
       if (isDragging) {
-        e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
         setCurrentX(e.touches[0].clientX);
       }
     },
@@ -65,9 +63,8 @@ const ICPhotoCarouselNew = ({ openModal }) => {
   const handleTouchEnd = useCallback(
     (e) => {
       if (isDragging) {
-        e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
         const diffX = startX - currentX;
-        const threshold = 30; // ลดระยะทางขั้นต่ำในการปัด (จาก 50 เป็น 30)
+        const threshold = 50; // เพิ่มระยะทางขั้นต่ำในการปัด
 
         if (Math.abs(diffX) > threshold) {
           if (diffX > 0) {
@@ -106,7 +103,7 @@ const ICPhotoCarouselNew = ({ openModal }) => {
   const handleMouseUp = useCallback(() => {
     if (isDragging) {
       const diffX = startX - currentX;
-      const threshold = 30; // ลดระยะทางขั้นต่ำในการลาก (จาก 50 เป็น 30)
+      const threshold = 50; // เพิ่มระยะทางขั้นต่ำในการลาก
 
       if (Math.abs(diffX) > threshold) {
         if (diffX > 0) {
@@ -128,16 +125,10 @@ const ICPhotoCarouselNew = ({ openModal }) => {
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      // Touch events - ใช้ passive: false เพื่อให้สามารถเรียก preventDefault() ได้
-      container.addEventListener("touchstart", handleTouchStart, {
-        passive: false,
-      });
-      container.addEventListener("touchmove", handleTouchMove, {
-        passive: false,
-      });
-      container.addEventListener("touchend", handleTouchEnd, {
-        passive: false,
-      });
+      // Touch events
+      container.addEventListener("touchstart", handleTouchStart);
+      container.addEventListener("touchmove", handleTouchMove);
+      container.addEventListener("touchend", handleTouchEnd);
 
       // Mouse events
       container.addEventListener("mousedown", handleMouseDown);
@@ -157,9 +148,6 @@ const ICPhotoCarouselNew = ({ openModal }) => {
       };
     }
   }, [
-    isDragging,
-    startX,
-    currentX,
     handleTouchStart,
     handleTouchMove,
     handleTouchEnd,
@@ -206,6 +194,17 @@ const ICPhotoCarouselNew = ({ openModal }) => {
     ];
   };
 
+  // เพิ่ม debug log
+  const handleImageClick = (imageSrc) => {
+    console.log("🖼️ Image clicked:", imageSrc);
+    console.log("🔧 openModal function:", typeof openModal);
+    if (openModal && typeof openModal === "function") {
+      openModal(imageSrc);
+    } else {
+      console.error("❌ openModal is not a function:", openModal);
+    }
+  };
+
   return (
     <div className="w-full max-w-md mx-auto">
       <h3 className="text-lg font-semibold text-light-green-800 mb-6 text-center">
@@ -216,8 +215,6 @@ const ICPhotoCarouselNew = ({ openModal }) => {
         className="relative h-[320px] flex items-center justify-center cursor-grab active:cursor-grabbing"
         style={{
           userSelect: "none",
-          touchAction: "none", // ป้องกันการ scroll บนมือถือ
-          overscrollBehavior: "none", // ป้องกันการ bounce effect
         }}
       >
         {/* Swipe hint */}
@@ -234,12 +231,13 @@ const ICPhotoCarouselNew = ({ openModal }) => {
               transform: `translate(${image.x}px, ${image.y}px) scale(${image.scale}) rotate(${image.rotate}deg)`,
               opacity: image.opacity,
             }}
-            onClick={() => openModal(image.src)}
+            onClick={() => handleImageClick(image.src)}
           >
             <img
               src={image.src}
               alt={`IC ${image.index + 1}`}
-              className="w-[240px] h-[320px] rounded-2xl shadow-2xl object-cover border-4 border-white hover:scale-105 transition-transform duration-200"
+              className="w-[240px] h-[320px] rounded-2xl shadow-2xl object-cover border-4 border-white hover:scale-105 transition-transform duration-200 clickable-image"
+              draggable={false}
             />
           </div>
         ))}
@@ -253,7 +251,7 @@ const ICPhotoCarouselNew = ({ openModal }) => {
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-light-green-500 scale-125"
-                  : "bg-light-green-300 hover:bg-light-green-400"
+                  : "bg-light-green-400 hover:bg-light-green-500"
               }`}
             />
           ))}

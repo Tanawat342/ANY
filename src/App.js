@@ -13,10 +13,18 @@ import {
   PasswordLock,
   ICPhotoCarouselNew,
   ImageModal,
+  ErrorBoundary,
 } from "./components/ui";
 
 function App() {
-  const { isModalVisible, currentImage, openModal, closeModal } = useModal();
+  const {
+    isModalVisible,
+    currentImage,
+    isLoading,
+    openModal,
+    closeModal,
+    forceClose,
+  } = useModal();
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
@@ -82,65 +90,69 @@ function App() {
   });
 
   return (
-    <div className="relative min-h-screen light-green-bg">
-      <div className="aura" />
-      <FloatingAssets />
+    <ErrorBoundary>
+      <div className="relative min-h-screen light-green-bg">
+        <div className="aura" />
+        <FloatingAssets />
 
-      <div className="relative z-10 flex justify-center min-h-screen overflow-y-auto">
-        <div className="flex flex-col items-center max-w-[350px] py-12 gap-12 relative component-container">
-          <HeroSection
-            content={{
-              title: "Happy Anniversary! 💕",
-              subtitle: "Our Love Story",
-              partnerName: "My Love 💍",
-            }}
-          />
+        <div className="relative z-10 flex justify-center min-h-screen overflow-y-auto">
+          <div className="flex flex-col items-center max-w-[350px] py-12 gap-12 relative component-container">
+            <HeroSection
+              content={{
+                title: "Happy Anniversary! 💕",
+                subtitle: "Our Love Story",
+                partnerName: "My Love 💍",
+              }}
+            />
 
-          <StackedPhotoCarousel openModal={openModal} />
+            <StackedPhotoCarousel openModal={openModal} />
 
-          <div className="decorative-separator"></div>
+            <div className="decorative-separator"></div>
 
-          <MusicPlayer />
+            <MusicPlayer />
 
-          <div className="component-divider"></div>
+            <div className="component-divider"></div>
 
-          {/* Our Anniversary Memories - Text Only */}
-          <div className="bg-light-green-50 shadow-lg rounded-lg p-8 border-l-4 border-light-green-300 light-green-shadow">
-            <h3 className="text-lg font-semibold text-light-green-800 mb-6 text-center">
-              🌿 Our Anniversary Memories 🌿
-            </h3>
-            <div className="space-y-6">
-              {_anniversaryMemories.map((memory, index) => (
-                <div
-                  key={memory.id}
-                  className="text-base leading-relaxed text-light-green-800 text-start mb-6 last:mb-0"
-                >
-                  <div className="font-medium text-light-green-700 mb-2">
-                    {memory.date}
+            {/* Our Anniversary Memories - Text Only */}
+            <div className="bg-light-green-50 shadow-lg rounded-lg p-8 border-l-4 border-light-green-300 light-green-shadow">
+              <h3 className="text-lg font-semibold text-light-green-800 mb-6 text-center">
+                🌿 Our Anniversary Memories 🌿
+              </h3>
+              <div className="space-y-6">
+                {_anniversaryMemories.map((memory, index) => (
+                  <div
+                    key={memory.id}
+                    className="text-base leading-relaxed text-light-green-800 text-start mb-6 last:mb-0"
+                  >
+                    <div className="font-medium text-light-green-700 mb-2">
+                      {memory.date}
+                    </div>
+                    <div>{memory.description}</div>
                   </div>
-                  <div>{memory.description}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            {/* IC Photo Carousel - New Component */}
+            <ICPhotoCarouselNew openModal={openModal} />
+
+            <div className="component-divider"></div>
+
+            <GiftOpening ref={giftRef} isInView={isInViewGiftRef} />
+
+            <Footer />
+
+            <ImageModal
+              isVisible={isModalVisible}
+              imageSrc={currentImage}
+              onClose={closeModal}
+              onError={forceClose}
+              isLoading={isLoading}
+            />
           </div>
-
-          {/* IC Photo Carousel - New Component */}
-          <ICPhotoCarouselNew openModal={openModal} />
-
-          <div className="component-divider"></div>
-
-          <GiftOpening ref={giftRef} isInView={isInViewGiftRef} />
-
-          <Footer />
-
-          <ImageModal
-            isVisible={isModalVisible}
-            imageSrc={currentImage}
-            onClose={closeModal}
-          />
         </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }
 

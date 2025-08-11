@@ -216,42 +216,66 @@ const PasswordLock = memo(({ onUnlock }) => {
         >
           <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-xs mx-auto">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
-              <button
+              <motion.button
                 key={number}
                 onClick={() => handleNumberClick(number)}
                 disabled={isProcessing || currentIndex >= 6}
-                className="w-16 h-16 md:w-20 md:h-20 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white text-2xl md:text-3xl font-bold rounded-full border-2 border-white/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-white/25 to-white/15 hover:from-white/35 hover:to-white/25 active:from-white/45 active:to-white/35 text-white text-2xl md:text-3xl font-bold rounded-2xl border-2 border-white/40 shadow-lg hover:shadow-xl active:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation backdrop-blur-sm"
+                style={{
+                  boxShadow:
+                    "0 8px 32px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                }}
               >
                 {number}
-              </button>
+              </motion.button>
             ))}
 
             {/* Clear button */}
-            <button
+            <motion.button
               onClick={handleClear}
               disabled={isProcessing}
-              className="w-16 h-16 md:w-20 md:h-20 bg-red-500/80 hover:bg-red-500/90 active:bg-red-500 text-white text-lg md:text-xl font-bold rounded-full border-2 border-red-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-400/80 to-red-600/80 hover:from-red-400/90 hover:to-red-600/90 active:from-red-400 active:to-red-600 text-white text-lg md:text-xl font-bold rounded-2xl border-2 border-red-300/60 shadow-lg hover:shadow-xl active:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation backdrop-blur-sm"
+              style={{
+                boxShadow:
+                  "0 8px 32px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+              }}
             >
               C
-            </button>
+            </motion.button>
 
             {/* Zero button */}
-            <button
+            <motion.button
               onClick={() => handleNumberClick(0)}
               disabled={isProcessing || currentIndex >= 6}
-              className="w-16 h-16 md:w-20 md:h-20 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white text-2xl md:text-3xl font-bold rounded-full border-2 border-white/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-white/25 to-white/15 hover:from-white/35 hover:to-white/25 active:from-white/45 active:to-white/35 text-white text-2xl md:text-3xl font-bold rounded-2xl border-2 border-white/40 shadow-lg hover:shadow-xl active:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation backdrop-blur-sm"
+              style={{
+                boxShadow:
+                  "0 8px 32px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+              }}
             >
               0
-            </button>
+            </motion.button>
 
             {/* Backspace button */}
-            <button
+            <motion.button
               onClick={handleBackspace}
               disabled={isProcessing || currentIndex <= 0}
-              className="w-16 h-16 md:w-20 md:h-20 bg-blue-500/80 hover:bg-blue-500/90 active:bg-blue-500 text-white text-lg md:text-xl font-bold rounded-full border-2 border-blue-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-400/80 to-blue-600/80 hover:from-blue-400/90 hover:to-blue-600/90 active:from-blue-400 active:to-blue-600 text-white text-lg md:text-xl font-bold rounded-2xl border-2 border-blue-300/60 shadow-lg hover:shadow-xl active:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation backdrop-blur-sm"
+              style={{
+                boxShadow:
+                  "0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+              }}
             >
               ←
-            </button>
+            </motion.button>
           </div>
         </motion.div>
 

@@ -78,6 +78,17 @@ const StackedPhotoCarousel = memo(({ openModal }) => {
     ];
   };
 
+  // เพิ่ม debug log
+  const handleImageClick = (imageSrc) => {
+    console.log("🖼️ StackedPhotoCarousel Image clicked:", imageSrc);
+    console.log("🔧 openModal function:", typeof openModal);
+    if (openModal && typeof openModal === "function") {
+      openModal(imageSrc);
+    } else {
+      console.error("❌ openModal is not a function:", openModal);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -115,9 +126,9 @@ const StackedPhotoCarousel = memo(({ openModal }) => {
               <img
                 src={image.src}
                 alt={`Slide ${image.index + 1}`}
-                onClick={() => openModal(image.src)}
+                onClick={() => handleImageClick(image.src)}
                 loading="lazy"
-                className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
+                className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-200 clickable-image"
                 draggable={false}
               />
             </div>
