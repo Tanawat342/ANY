@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const ICPhotoCarouselNew = ({ openModal }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,21 +45,21 @@ const ICPhotoCarouselNew = ({ openModal }) => {
   };
 
   // Touch events สำหรับการปัด - ปรับปรุงให้ง่ายขึ้น
-  const handleTouchStart = (e) => {
+  const handleTouchStart = useCallback((e) => {
     e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
     setIsDragging(true);
     setStartX(e.touches[0].clientX);
     setCurrentX(e.touches[0].clientX);
-  };
+  }, []);
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = useCallback((e) => {
     if (isDragging) {
       e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
       setCurrentX(e.touches[0].clientX);
     }
-  };
+  }, [isDragging]);
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = useCallback((e) => {
     if (isDragging) {
       e.preventDefault(); // ป้องกันการ scroll ของหน้าเว็บ
       const diffX = startX - currentX;
@@ -79,22 +79,22 @@ const ICPhotoCarouselNew = ({ openModal }) => {
       setStartX(0);
       setCurrentX(0);
     }
-  };
+  }, [isDragging, startX, currentX]);
 
   // Mouse events สำหรับการลาก - ปรับปรุงให้ง่ายขึ้น
-  const handleMouseDown = (e) => {
+  const handleMouseDown = useCallback((e) => {
     setIsDragging(true);
     setStartX(e.clientX);
     setCurrentX(e.clientX);
-  };
+  }, []);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = useCallback((e) => {
     if (isDragging) {
       setCurrentX(e.clientX);
     }
-  };
+  }, [isDragging]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     if (isDragging) {
       const diffX = startX - currentX;
       const threshold = 30; // ลดระยะทางขั้นต่ำในการลาก (จาก 50 เป็น 30)
@@ -113,7 +113,7 @@ const ICPhotoCarouselNew = ({ openModal }) => {
       setStartX(0);
       setCurrentX(0);
     }
-  };
+  }, [isDragging, startX, currentX]);
 
   // เพิ่ม event listeners เมื่อ component mount
   useEffect(() => {
